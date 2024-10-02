@@ -1,4 +1,5 @@
 from pico2d import *
+import random
 
 open_canvas()
 grass = load_image('TUK_GROUND.png')
@@ -26,6 +27,19 @@ frame = 0
 dirx = 0
 diry = 0
 
+hand_x = 800 // 2
+hand_y = 600 // 2
+def set_hand_pos():
+    global hand_x, hand_y
+    hand_x = random.random()
+    hand_y = random.random()
+    dir = random.randrange(0, 2)
+    if dir == 1:
+        hand_x = hand_x * -1
+    dir = random.randrange(0, 2)
+    if dir == 1:
+        hand_y = hand_y * -1
+
 while running:
     clear_canvas()
     grass.draw(400, 300)
@@ -36,10 +50,14 @@ while running:
         act = 1
 
     character.clip_draw(frame * 100, act*100, 100, 100, x, y)
-
+    hand.draw(hand_x,hand_y)
     frame = (frame + 1) % 8
+
     update_canvas()
     handle_events()
+
+
+
     delay(0.03)
 
 
