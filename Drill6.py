@@ -33,6 +33,16 @@ def set_hand_pos():
     global hand_x, hand_y
     hand_x = random.randrange(0,800)
     hand_y = random.randrange(0,600)
+def move():
+    global x,y, hand_x, hand_y
+    for i in range(0, 100 + 1, 1):
+        t = i / 500
+    if t == 1:
+        x = hand_x
+        y = hand_y
+    else:
+        x = (1 - t) * x + t * hand_x
+        y = (1 - t) * y + t * hand_y
 
 while running:
     clear_canvas()
@@ -43,6 +53,7 @@ while running:
     elif dirx > 0:
         act = 1
 
+    move()
     character.clip_draw(frame * 100, act*100, 100, 100, x, y)
     hand.draw(hand_x,hand_y)
     frame = (frame + 1) % 8
