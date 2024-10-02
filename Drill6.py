@@ -36,13 +36,18 @@ def set_hand_pos():
 def move():
     global x,y, hand_x, hand_y
     for i in range(0, 100 + 1, 1):
-        t = i / 500
+        t = i / 1500
     if t == 1:
         x = hand_x
         y = hand_y
     else:
         x = (1 - t) * x + t * hand_x
         y = (1 - t) * y + t * hand_y
+def check_boy_hand_L():
+    if (x >= hand_x and x - hand_x <= 20) or (x < hand_x and hand_x - x <= 20):
+        if (y >= hand_y and y - hand_y <= 20) or (y < hand_y and hand_y - y <= 20):
+            return 1
+    return 0
 
 while running:
     clear_canvas()
@@ -61,7 +66,7 @@ while running:
     update_canvas()
     handle_events()
 
-    if (x == hand_x) & (y == hand_y):
+    if (check_boy_hand_L()):
         set_hand_pos()
 
     delay(0.03)
