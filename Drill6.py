@@ -31,14 +31,8 @@ hand_x = 800 // 2
 hand_y = 600 // 2
 def set_hand_pos():
     global hand_x, hand_y
-    hand_x = random.random()
-    hand_y = random.random()
-    dir = random.randrange(0, 2)
-    if dir == 1:
-        hand_x = hand_x * -1
-    dir = random.randrange(0, 2)
-    if dir == 1:
-        hand_y = hand_y * -1
+    hand_x = random.randrange(0,800)
+    hand_y = random.randrange(0,600)
 
 while running:
     clear_canvas()
@@ -56,7 +50,8 @@ while running:
     update_canvas()
     handle_events()
 
-
+    if (x == hand_x) & (y == hand_y):
+        set_hand_pos()
 
     delay(0.03)
 
